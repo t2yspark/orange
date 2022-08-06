@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="perch_KNN" description="">
+	<nodes>
+		<node id="0" name="Python Script" qualified_name="Orange.widgets.data.owpythonscript.OWPythonScript" project_name="Orange3" version="" title="Python Script" position="(507.0, 520.0)" />
+		<node id="1" name="Predictions" qualified_name="Orange.widgets.evaluate.owpredictions.OWPredictions" project_name="Orange3" version="" title="Predictions" position="(688.0, 338.0)" />
+		<node id="2" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWDataTable" project_name="Orange3" version="" title="perch" position="(329.0, 336.0)" />
+		<node id="3" name="Logistic Regression" qualified_name="Orange.widgets.model.owlogisticregression.OWLogisticRegression" project_name="Orange3" version="" title="Logistic Regression" position="(496.0, 244.0)" />
+		<node id="4" name="Select Columns" qualified_name="Orange.widgets.data.owselectcolumns.OWSelectAttributes" project_name="Orange3" version="" title="Select Columns" position="(236.0, 336.0)" />
+		<node id="5" name="Test and Score" qualified_name="Orange.widgets.evaluate.owtestandscore.OWTestAndScore" project_name="Orange3" version="" title="Test and Score (2)" position="(541.0, 342.0)" />
+		<node id="6" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="File (2)" position="(139.0, 334.0)" />
+		<node id="7" name="kNN" qualified_name="Orange.widgets.model.owknn.OWKNNLearner" project_name="Orange3" version="" title="kNN" position="(428.0, 411.0)" />
+		<node id="8" name="Python Script" qualified_name="Orange.widgets.data.owpythonscript.OWPythonScript" project_name="Orange3" version="" title="lenses" position="(868.0, 497.0)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="4" sink_node_id="2" source_channel="Data" sink_channel="Data" enabled="true" />
+		<link id="1" source_node_id="2" sink_node_id="3" source_channel="Selected Data" sink_channel="Data" enabled="true" />
+		<link id="2" source_node_id="2" sink_node_id="7" source_channel="Selected Data" sink_channel="Data" enabled="true" />
+		<link id="3" source_node_id="6" sink_node_id="4" source_channel="Data" sink_channel="Data" enabled="true" />
+		<link id="4" source_node_id="5" sink_node_id="1" source_channel="Predictions" sink_channel="Data" enabled="true" />
+		<link id="5" source_node_id="7" sink_node_id="5" source_channel="Learner" sink_channel="Learner" enabled="true" />
+		<link id="6" source_node_id="2" sink_node_id="5" source_channel="Selected Data" sink_channel="Data" enabled="true" />
+		<link id="7" source_node_id="7" sink_node_id="0" source_channel="Model" sink_channel="Classifier" enabled="true" />
+		<link id="8" source_node_id="0" sink_node_id="5" source_channel="Learner" sink_channel="Learner" enabled="true" />
+	</links>
+	<annotations>
+		<text id="0" type="text/plain" rect="(399.0, 76.0, 199.0, 81.0)" font-family="Gulim" font-size="16">logistic regression won't work because it demands categorical class variable 
+why?</text>
+		<arrow id="1" start="(469.99999999999994, 147.99999999999997)" end="(479.99999999999994, 213.0)" fill="#C1272D" />
+		<text id="2" type="text/plain" rect="(938.0, 479.0, 83.0, 67.0)" font-family="Gulim" font-size="16">not working</text>
+		<arrow id="3" start="(935.0, 503.0)" end="(904.0, 500.0)" fill="#C1272D" />
+		<text id="4" type="text/plain" rect="(436.0, 609.0, 232.0, 195.0)" font-family="Gulim" font-size="16">&lt;class 'Orange.classification.knn.KNNLearner'&gt; won't work while &lt;class 'Orange.modelling.knn.KNNLearner'&gt; work because it demands categorical class variable. why?</text>
+		<arrow id="5" start="(532.0, 628.0)" end="(519.0, 570.0)" fill="#C1272D" />
+		<text id="6" type="text/plain" rect="(420.0, 586.0, 38.0, 30.0)" font-family="Gulim" font-size="16">Q1.</text>
+		<text id="7" type="text/plain" rect="(842.0, 425.0, 38.0, 25.0)" font-family="Gulim" font-size="16">Q2.</text>
+		<text id="8" type="text/plain" rect="(377.0, 53.0, 40.0, 31.0)" font-family="Gulim" font-size="16">Q3.</text>
+	</annotations>
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="literal">{'controlAreaVisible': True, 'currentScriptIndex': 0, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x01\xf7\x00\x00\x00\x97\x00\x00\x05\xc4\x00\x00\x03\xb5\x00\x00\x01\xf7\x00\x00\x00\x97\x00\x00\x05\xc4\x00\x00\x03\xb5\x00\x00\x00\x00\x00\x00\x00\x00\x06\x90\x00\x00\x01\xf7\x00\x00\x00\x97\x00\x00\x05\xc4\x00\x00\x03\xb5', 'scriptLibrary': [{'name': 'skl_model', 'script': '#from Orange.classification import SklTreeLearner\n#from Orange.classification import LinearSVMLearner\n#from Orange.classification import RandomForestLearner\nfrom Orange.classification import KNNLearner\nfrom Orange.data import Table\nimport Orange\n\n#this categorical calsss variable expected\nlearner = KNNLearner(n_neighbors=5,metric=\'euclidean\', weights=\'uniform\')\n#&lt;class \'Orange.modelling.knn.KNNLearner\'&gt;\nprint (type(in_learner))\n\n\n#knn=Orange.classification.knn.KNNLearner(n_neighbors=5,metric=\'euclidean\', weights=\'uniform\')\n#&lt;class \'Orange.classification.knn.KNNLearner\'&gt;\nprint (type(learner))\n#print (type(knn))\n\nskl_model = in_classifier.skl_model\nprint (skl_model)\n#model = learner(Table("perch"))  # train model on perch dat\n#skl_model = model.skl_model  # get skl model\nout_learner=learner\n#out_learner=in_learner\n', 'filename': None}], 'scriptText': '#from Orange.classification import SklTreeLearner\n#from Orange.classification import LinearSVMLearner\n#from Orange.classification import RandomForestLearner\nfrom Orange.classification import KNNLearner\nfrom Orange.data import Table\nimport Orange\n\n#this categorical calsss variable expected\nlearner = KNNLearner(n_neighbors=5,metric=\'euclidean\', weights=\'uniform\')\n#&lt;class \'Orange.modelling.knn.KNNLearner\'&gt;\nprint (type(in_learner))\n\n\n#knn=Orange.classification.knn.KNNLearner(n_neighbors=5,metric=\'euclidean\', weights=\'uniform\')\n#&lt;class \'Orange.classification.knn.KNNLearner\'&gt;\nprint (type(learner))\n#print (type(knn))\n\nskl_model = in_classifier.skl_model\nprint (skl_model)\n#model = learner(Table("perch"))  # train model on perch dat\n#skl_model = model.skl_model  # get skl model\nout_learner=learner\n#out_learner=in_learner\n', 'splitterState': b'\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x9c\x00\x00\x00]\x01\xff\xff\xff\xff\x01\x00\x00\x00\x02\x00', 'vimModeEnabled': False, '__version__': 2}</properties>
+		<properties node_id="1" format="pickle">gASVMgIAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNzYXZlZFdpZGdldEdlb21ldHJ5
+lENCAdnQywADAAAAAAENAAAAxgAABVEAAAJoAAABDgAAAOUAAAVQAAACZwAAAAAAAAAABpAAAAEO
+AAAA5QAABVAAAAJnlIwJc2VsZWN0aW9ulF2UjAtzaG93X3Njb3Jlc5SIjAtzY29yZV90YWJsZZR9
+lIwMc2hvd25fc2NvcmVzlI+UKIwJUHJlY2lzaW9ulIwCRjGUjANBVUOUjAJSMpSMBFJNU0WUjAdD
+LUluZGV4lIwCQ0GUjANNU0WUjAZSZWNhbGyUjANNQUWUkHOMC19fdmVyc2lvbl9flEsBjBBjb250
+ZXh0X3NldHRpbmdzlF2UKIwVb3Jhbmdld2lkZ2V0LnNldHRpbmdzlIwHQ29udGV4dJSTlCmBlH2U
+KIwGdmFsdWVzlH2UKIwLc2hvd25fcHJvYnOUSwGMDHRhcmdldF9jbGFzc5SMFihBdmVyYWdlIG92
+ZXIgY2xhc3NlcymUjAtzY29yZV90YWJsZZR9lGgVSwF1jAdjbGFzc2VzlIwFYnJlYW2UjAVzbWVs
+dJSGlHViaBopgZR9lChoHX2UKGgfSwFoIIwWKEF2ZXJhZ2Ugb3ZlciBjbGFzc2VzKZRoIn2UaBVL
+AXVoJIwLSXJpcy1zZXRvc2GUjA9JcmlzLXZlcnNpY29sb3KUjA5JcmlzLXZpcmdpbmljYZSHlHVi
+ZXUu
+</properties>
+		<properties node_id="2" format="literal">{'auto_commit': True, 'color_by_class': True, 'controlAreaVisible': True, 'dist_color_RGB': (220, 220, 220, 255), 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x01\x19\x00\x00\x00\xce\x00\x00\x05\xaf\x00\x00\x02\xe1\x00\x00\x01\x1a\x00\x00\x00\xed\x00\x00\x05\xae\x00\x00\x02\xe0\x00\x00\x00\x00\x00\x00\x00\x00\x06\x90\x00\x00\x01\x1a\x00\x00\x00\xed\x00\x00\x05\xae\x00\x00\x02\xe0', 'select_rows': True, 'selected_cols': [], 'selected_rows': [], 'show_attribute_labels': True, 'show_distributions': True, '__version__': 2}</properties>
+		<properties node_id="3" format="literal">{'C_index': 61, 'auto_apply': True, 'class_weight': False, 'controlAreaVisible': True, 'learner_name': '', 'penalty_type': 1, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x02\xd3\x00\x00\x01a\x00\x00\x03\xbc\x00\x00\x02s\x00\x00\x02\xd4\x00\x00\x01\x80\x00\x00\x03\xbb\x00\x00\x02r\x00\x00\x00\x00\x00\x00\x00\x00\x06\x90\x00\x00\x02\xd4\x00\x00\x01\x80\x00\x00\x03\xbb\x00\x00\x02r', '__version__': 1}</properties>
+		<properties node_id="4" format="pickle">gASV9QIAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNpZ25v
+cmVfbmV3X2ZlYXR1cmVzlImME3NhdmVkV2lkZ2V0R2VvbWV0cnmUQ0IB2dDLAAMAAAAAAhsAAACu
+AAAEdAAAAyUAAAIcAAAAzQAABHMAAAMkAAAAAAAAAAAGkAAAAhwAAADNAAAEcwAAAySUjBJ1c2Vf
+aW5wdXRfZmVhdHVyZXOUiYwLX192ZXJzaW9uX1+USwGMEGNvbnRleHRfc2V0dGluZ3OUXZQojBVv
+cmFuZ2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0lJOUKYGUfZQojAZ2YWx1ZXOUfZQojBFkb21h
+aW5fcm9sZV9oaW50c5R9lCiMBndlaWdodJRLAoaUjAlhdHRyaWJ1dGWUSwCGlIwGbGVuZ3RolEsC
+hpSMBWNsYXNzlEsAhpR1Sv7///+GlGgHSwF1jAphdHRyaWJ1dGVzlH2UKIwGd2VpZ2h0lEsCjAZs
+ZW5ndGiUSwJ1jAVtZXRhc5R9lHViaAwpgZR9lChoD32UKIwRZG9tYWluX3JvbGVfaGludHOUfZQo
+jAxzZXBhbCBsZW5ndGiUSwKGlIwJYXR0cmlidXRllEsAhpSMC3NlcGFsIHdpZHRolEsChpRoKUsB
+hpSMDHBldGFsIGxlbmd0aJRLAoaUaClLAoaUjAtwZXRhbCB3aWR0aJRLAoaUaClLA4aUjARpcmlz
+lEsBhpSMBWNsYXNzlEsAhpR1Sv7///+GlGgHSwF1aBx9lChoJ0sCaCtLAmguSwJoMUsCaDRLAXVo
+IH2UdWJoDCmBlH2UKGgPfZQojBFkb21haW5fcm9sZV9oaW50c5R9lChoHksChpSMCWF0dHJpYnV0
+ZZRLAIaUaB9LAoaUaEFLAYaUjAdzcGVjaWVzlEsBhpSMBWNsYXNzlEsAhpR1Sv7///+GlGgHSwF1
+aBx9lChoHksCaB9LAmhFSwF1aCB9lHViZXUu
+</properties>
+		<properties node_id="5" format="pickle">gASV6AMAAAAAAAB9lCiMFGNvbXBhcmlzb25fY3JpdGVyaW9ulEsAjBJjb250cm9sQXJlYVZpc2li
+bGWUiIwNY3Zfc3RyYXRpZmllZJSJjAduX2ZvbGRzlEsDjAluX3JlcGVhdHOUSwOMCnJlc2FtcGxp
+bmeUSwSMBHJvcGWURz+5mZmZmZmajAtzYW1wbGVfc2l6ZZRLCYwTc2F2ZWRXaWRnZXRHZW9tZXRy
+eZRDQgHZ0MsAAwAAAAACXAAAAQoAAAVnAAAC/QAAAlwAAAEKAAAFZwAAAv0AAAAAAAAAAAaQAAAC
+XAAAAQoAAAVnAAAC/ZSMEnNodWZmbGVfc3RyYXRpZmllZJSIjAh1c2Vfcm9wZZSJjAtzY29yZV90
+YWJsZZR9lIwMc2hvd25fc2NvcmVzlI+UKIwJUHJlY2lzaW9ulIwCRjGUjANBVUOUjAJSMpSMBFJN
+U0WUjAdDLUluZGV4lIwCQ0GUjANNU0WUjAZSZWNhbGyUjANNQUWUkHOMC19fdmVyc2lvbl9flEsD
+jBBjb250ZXh0X3NldHRpbmdzlF2UKIwVb3Jhbmdld2lkZ2V0LnNldHRpbmdzlIwHQ29udGV4dJST
+lCmBlH2UKIwGdmFsdWVzlH2UKIwPY2xhc3Nfc2VsZWN0aW9ulIwhKE5vbmUsIHNob3cgYXZlcmFn
+ZSBvdmVyIGNsYXNzZXMplEr/////hpSMDGZvbGRfZmVhdHVyZZROSv7///+GlIwVZm9sZF9mZWF0
+dXJlX3NlbGVjdGVklIlK/v///4aUaA19lGgbSwN1jAphdHRyaWJ1dGVzlIwGd2VpZ2h0lEsChpSF
+lIwFbWV0YXOUKYwKY2xhc3NfdmFyc5SMBmxlbmd0aJRLAoaUhZR1YmggKYGUfZQoaCN9lCiMD2Ns
+YXNzX3NlbGVjdGlvbpSMIShOb25lLCBzaG93IGF2ZXJhZ2Ugb3ZlciBjbGFzc2VzKZRK/////4aU
+jAxmb2xkX2ZlYXR1cmWUTkr+////hpSMFWZvbGRfZmVhdHVyZV9zZWxlY3RlZJSJSv7///+GlIwL
+c2NvcmVfdGFibGWUfZRoG0sDdWgtKIwMc2VwYWwgbGVuZ3RolEsChpSMC3NlcGFsIHdpZHRolEsC
+hpSMDHBldGFsIGxlbmd0aJRLAoaUjAtwZXRhbCB3aWR0aJRLAoaUdJRoMSloMowEaXJpc5RLAYaU
+hZR1YmggKYGUfZQoaCN9lChoOWgmSv////+GlGg8Tkr+////hpRoPolK/v///4aUaEB9lGgbSwN1
+aC2MBmxlbmd0aJRLAoaUhZRoMSloMowGd2VpZ2h0lEsChpSFlHViZXUu
+</properties>
+		<properties node_id="6" format="pickle">gASVSwkAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZQojB5v
+cmFuZ2V3aWRnZXQudXRpbHMuZmlsZWRpYWxvZ3OUjApSZWNlbnRQYXRolJOUKYGUfZQojAdhYnNw
+YXRolIwVQzovVXNlcnMvTWUvcGVyY2gudGFilIwGcHJlZml4lE6MB3JlbHBhdGiUTowFdGl0bGWU
+jACUjAVzaGVldJRoDowLZmlsZV9mb3JtYXSUTnViaAYpgZR9lChoCYxUQzovVXNlcnMvTWUvQXBw
+RGF0YS9Mb2NhbC9Qcm9ncmFtcy9PcmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3JhbmdlL2RhdGFz
+ZXRzL2lyaXMudGFilGgLjA9zYW1wbGUtZGF0YXNldHOUaAyMCGlyaXMudGFilGgNaA5oD2gOaBBO
+dWJoBimBlH2UKGgJjEhDOi9Vc2Vycy9NZS9Eb3dubG9hZHMv7Zmc64+ZIOuNsOydtO2EsCDshYsv
+7Zmc64+ZOS93aW5lcXVhbGl0eS13aGl0ZS5jc3aUaAtOaAxOaA1oDmgPaA5oEE51YmgGKYGUfZQo
+aAmMSkM6L1VzZXJzL01lL0Rvd25sb2Fkcy/tmZzrj5kg642w7J207YSwIOyFiy/tmZzrj5k4L01l
+YXN1cmVtZW50X3N1bW1hcnkuY3N2lGgLTmgMTmgNaA5oD2gOaBBOdWJoBimBlH2UKGgJjD9DOi9V
+c2Vycy9NZS9Eb3dubG9hZHMv7Zmc64+ZIOuNsOydtO2EsCDshYsv7Zmc64+ZNC9EZWxpdmVyeS5j
+c3aUaAtOaAxOaA1oDmgPaA5oEE51YmgGKYGUfZQoaAmMPEM6L1VzZXJzL01lL0Rvd25sb2Fkcy/t
+mZzrj5kg642w7J207YSwIOyFiy/tmZzrj5kzL2hlYXJ0LmNzdpRoC05oDE5oDWgOaA9oDmgQTnVi
+aAYpgZR9lChoCYxNQzovVXNlcnMvTWUvRG93bmxvYWRzL+2ZnOuPmSDrjbDsnbTthLAg7IWLL+2Z
+nOuPmTIv6rCQ6rek7Y+J7KCQ7YWM7Iqk7Yq4Lnhsc3iUaAtOaAxOaA1oDmgPaA5oEE51YmgGKYGU
+fZQoaAmMV0M6L1VzZXJzL01lL0FwcERhdGEvTG9jYWwvUHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRl
+LXBhY2thZ2VzL09yYW5nZS9kYXRhc2V0cy9ob3VzaW5nLnRhYpRoC2gUaAyMC2hvdXNpbmcudGFi
+lGgNaA5oD2gOaBBOdWJoBimBlH2UKGgJjFdDOi9Vc2Vycy9NZS9BcHBEYXRhL0xvY2FsL1Byb2dy
+YW1zL09yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvdGl0YW5pYy50YWKU
+aAtoFGgMjAt0aXRhbmljLnRhYpRoDWgOaA9oDmgQTnViaAYpgZR9lChoCYxdQzovVXNlcnMvTWUv
+QXBwRGF0YS9Mb2NhbC9Qcm9ncmFtcy9PcmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3JhbmdlL2Rh
+dGFzZXRzL2hlYXJ0X2Rpc2Vhc2UudGFilGgLaBRoDIwRaGVhcnRfZGlzZWFzZS50YWKUaA1oDmgP
+aA5oEE51YmgGKYGUfZQoaAmMXkM6L1VzZXJzL01lL0FwcERhdGEvTG9jYWwvUHJvZ3JhbXMvT3Jh
+bmdlL0xpYi9zaXRlLXBhY2thZ2VzL09yYW5nZS9kYXRhc2V0cy9icm93bi1zZWxlY3RlZC50YWKU
+aAtoFGgMjBJicm93bi1zZWxlY3RlZC50YWKUaA1oDmgPaA5oEE51YmgGKYGUfZQoaAmMU0M6L1Vz
+ZXJzL01lL0FwcERhdGEvTG9jYWwvUHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRlLXBhY2thZ2VzL09y
+YW5nZS9kYXRhc2V0cy96b28udGFilGgLaBRoDIwHem9vLnRhYpRoDWgOaA9oDmgQTnViZYwLcmVj
+ZW50X3VybHOUXZSME3NhdmVkV2lkZ2V0R2VvbWV0cnmUQ0IB2dDLAAMAAAAAAwcAAACrAAAFYAAA
+AvUAAAMIAAAAygAABV8AAAL0AAAAAAAAAAAGkAAAAwgAAADKAAAFXwAAAvSUjAtzaGVldF9uYW1l
+c5R9lIwGc291cmNllEsAjAN1cmyUaA6MDWRvbWFpbl9lZGl0b3KUfZSMC19fdmVyc2lvbl9flEsB
+jBBjb250ZXh0X3NldHRpbmdzlF2UKIwVb3Jhbmdld2lkZ2V0LnNldHRpbmdzlIwHQ29udGV4dJST
+lCmBlH2UKIwGdmFsdWVzlH2UKIwJdmFyaWFibGVzlF2UaEF9lGhNXZQoXZQojAZ3ZWlnaHSUjBRP
+cmFuZ2UuZGF0YS52YXJpYWJsZZSMEkNvbnRpbnVvdXNWYXJpYWJsZZSTlEsAaA6IZV2UKIwGbGVu
+Z3RolGhVSwFoDohlZXNoQ0sBdYwKYXR0cmlidXRlc5SMBndlaWdodJRLAoaUhZSMBW1ldGFzlCmM
+CmNsYXNzX3ZhcnOUjAZsZW5ndGiUSwKGlIWUjBJtb2RpZmllZF92YXJpYWJsZXOUXZR1YmhIKYGU
+fZQoaEt9lCiMCXZhcmlhYmxlc5RdlIwNZG9tYWluX2VkaXRvcpR9lGhmXZQoXZQojAxzZXBhbCBs
+ZW5ndGiUaFVLAGgOiGVdlCiMC3NlcGFsIHdpZHRolGhVSwBoDohlXZQojAxwZXRhbCBsZW5ndGiU
+aFVLAGgOiGVdlCiMC3BldGFsIHdpZHRolGhVSwBoDohlXZQojARpcmlzlGhTjBBEaXNjcmV0ZVZh
+cmlhYmxllJOUSwGMLElyaXMtc2V0b3NhLCBJcmlzLXZlcnNpY29sb3IsIElyaXMtdmlyZ2luaWNh
+lIllZXNoQ0sBdWhYKIwMc2VwYWwgbGVuZ3RolEsChpSMC3NlcGFsIHdpZHRolEsChpSMDHBldGFs
+IGxlbmd0aJRLAoaUjAtwZXRhbCB3aWR0aJRLAoaUdJRoXCloXYwEaXJpc5RdlCiMC0lyaXMtc2V0
+b3NhlIwPSXJpcy12ZXJzaWNvbG9ylIwOSXJpcy12aXJnaW5pY2GUZYaUhZRoYV2UdWJldS4=
+</properties>
+		<properties node_id="7" format="literal">{'auto_apply': True, 'controlAreaVisible': True, 'learner_name': 'kNN', 'metric_index': 0, 'n_neighbors': 5, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x03\xa5\x00\x00\x02\xd9\x00\x00\x04\x8b\x00\x00\x03\xab\x00\x00\x03\xa5\x00\x00\x02\xd9\x00\x00\x04\x8b\x00\x00\x03\xab\x00\x00\x00\x00\x00\x00\x00\x00\x06\x90\x00\x00\x03\xa5\x00\x00\x02\xd9\x00\x00\x04\x8b\x00\x00\x03\xab', 'weight_index': 0, '__version__': 1}</properties>
+		<properties node_id="8" format="literal">{'controlAreaVisible': True, 'currentScriptIndex': 0, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x01c\x00\x00\x00\xcd\x00\x00\x050\x00\x00\x03\xe8\x00\x00\x01c\x00\x00\x00\xcd\x00\x00\x050\x00\x00\x03\xe8\x00\x00\x00\x00\x00\x00\x00\x00\x06\x90\x00\x00\x01c\x00\x00\x00\xcd\x00\x00\x050\x00\x00\x03\xe8', 'scriptLibrary': [{'name': 'KNN_lenses', 'script': 'import Orange\n\nlenses = Orange.data.Table("lenses")\n\nnnc = Orange.classification.knn.FindNearestConstructor()\nnnc.distance_constructor = Orange.distance.Euclidean()\n\ndid = Orange.feature.Descriptor.new_meta_id()\nnn = nnc(lenses, 0, did)\n\nprint ("*** Reference instance: ", lenses[0])\nfor inst in nn(lenses[0], 5):\n    print (inst)', 'filename': None}], 'scriptText': 'import Orange\n\nlenses = Orange.data.Table("lenses")\n\nnnc = Orange.classification.knn.FindNearestConstructor()\nnnc.distance_constructor = Orange.distance.Euclidean()\n\ndid = Orange.feature.Descriptor.new_meta_id()\nnn = nnc(lenses, 0, did)\n\nprint ("*** Reference instance: ", lenses[0])\nfor inst in nn(lenses[0], 5):\n    print (inst)', 'splitterState': b'\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x9c\x00\x00\x00]\x01\xff\xff\xff\xff\x01\x00\x00\x00\x02\x00', 'vimModeEnabled': False, '__version__': 2}</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
