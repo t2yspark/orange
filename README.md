@@ -1,3 +1,3 @@
 # orange
-these files are data for orange!
+2 datasets for orange!
 thanks!
